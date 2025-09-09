@@ -10,13 +10,17 @@ const UPIQRCode = ({ upiUrl }: UPIQRCodeProps) => {
   useEffect(() => {
     // Dynamically import qrcode to avoid SSR/ESM issues
     // import('qrcode').then(qrcode => {
-      qrcode.toString(upiUrl, { type: 'svg', margin: 1, width: 200 }, (err, string) => {
+    qrcode.toString(
+      upiUrl,
+      { type: 'svg', margin: 1, width: 200 },
+      (err: Error | null | undefined, svgString: string) => {
         if (err) {
           console.error('QR Generation failed:', err);
           return;
         }
-        setSvg(string);
-      });
+        setSvg(svgString);
+      }
+    );
     // });
   }, [upiUrl]);
 
