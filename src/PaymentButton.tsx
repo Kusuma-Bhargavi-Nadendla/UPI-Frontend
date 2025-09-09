@@ -14,7 +14,7 @@ const PaymentButton = () => {
   const [isPaying, setIsPaying] = useState<boolean>(false);
 
   // CONFIG — CHANGE TO YOUR UPI
-  const RECEIVER_UPI = "6304352660@ybl"; 
+  const RECEIVER_UPI = "6304352660@ybl";
   const RECEIVER_NAME = "Kusuma Nadendla";
   const PRICE_PER_ITEM = 10;
   const totalAmount = (itemCount * PRICE_PER_ITEM).toFixed(2);
@@ -41,7 +41,7 @@ const PaymentButton = () => {
 
         //Generate UPI URL with paymentId in note (for tracking)
         const upiUrl = `upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&am=${totalAmount}&cu=INR&tn=Order:${data.paymentId}`;
-        
+
         // Open UPI app
         window.location.href = upiUrl;
 
@@ -81,7 +81,7 @@ const PaymentButton = () => {
       } catch (e) {
         console.warn("Status check failed");
       }
-    }, 3000); 
+    }, 3000);
     setTimeout(() => {
       clearInterval(interval);
       if (paymentStatus === 'checking') {
@@ -93,7 +93,7 @@ const PaymentButton = () => {
   return (
     <div style={{ padding: '2rem', textAlign: 'center', fontFamily: 'Arial' }}>
       <h2> Order Items</h2>
-      
+
       <div style={{ margin: '1.5rem 0', fontSize: '1.3rem' }}>
         <button
           onClick={() => setItemCount(Math.max(1, itemCount - 1))}
@@ -125,12 +125,12 @@ const PaymentButton = () => {
           cursor: isPaying ? 'not-allowed' : 'pointer',
         }}
       >
-        {isPaying ? ' Processing...' : 
-         paymentStatus === 'success' ? ' Paid!' : 
-         `Pay ₹${totalAmount} via UPI`}
+        {isPaying ? ' Processing...' :
+          paymentStatus === 'success' ? ' Paid!' :
+            `Pay ₹${totalAmount} via UPI`}
       </button>
 
-      {showQR && <UPIQRCode upiUrl={`upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&am=${totalAmount}&cu=INR&tn=Order:${paymentId}`} />}
+      {showQR && <UPIQRCode upiUrl={`upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&mc=8299&tr=${paymentId}&am=${totalAmount}&cu=INR&tn=Order:${paymentId}`} />}
 
       {paymentStatus && (
         <div
@@ -152,7 +152,7 @@ const PaymentButton = () => {
       )}
 
       <p style={{ marginTop: '2rem', fontSize: '0.9rem', color: '#666' }}>
-         Real payment goes to: <strong>{RECEIVER_UPI}</strong>
+        Real payment goes to: <strong>{RECEIVER_UPI}</strong>
       </p>
     </div>
   );
