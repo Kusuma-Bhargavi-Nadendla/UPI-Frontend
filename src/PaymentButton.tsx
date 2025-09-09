@@ -130,7 +130,7 @@ const PaymentButton = () => {
             `Pay ₹${totalAmount} via UPI`}
       </button>
 
-      {showQR && <UPIQRCode upiUrl={`upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&mc=8299&tr=${paymentId}&am=${totalAmount}&cu=INR&tn=Order:${paymentId}`} />}
+      {showQR && <UPIQRCode upiUrl={`upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&mc=0000&tr=${paymentId}&am=${totalAmount}&cu=INR&tn=Order:${paymentId}`} />}
 
       {paymentStatus && (
         <div
