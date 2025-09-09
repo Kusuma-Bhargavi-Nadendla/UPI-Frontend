@@ -34,6 +34,7 @@ const PaymentButton = () => {
 
       // const data: PaymentResponse = await response.json();
       const data: PaymentResponse = { success: true, paymentId: `pay_${Date.now()}` }; // Mock response
+      const curPaymentId = data.paymentId;
 
       if (data.success) {
         setPaymentId(data.paymentId);
@@ -41,8 +42,8 @@ const PaymentButton = () => {
 
         //Generate UPI URL with paymentId in note (for tracking)
         // const upiUrl = `upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&am=${totalAmount}&cu=INR&tn=Order:${data.paymentId}`;
-        const upiUrl = `upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&am=${totalAmount}&cu=INR&tr=${paymentId}&tn=Order:${paymentId}&mc=0000`;
-
+        const upiUrl = `upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&am=${totalAmount}&cu=INR&tr=${curPaymentId}&tn=Order:${curPaymentId}&mc=0000`;
+        // console.log("URL Made:",upiUrl);
         // Open UPI app
         window.location.href = upiUrl;
 
