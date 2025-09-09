@@ -40,7 +40,8 @@ const PaymentButton = () => {
         console.log(" Payment initiated with ID:", data.paymentId);
 
         //Generate UPI URL with paymentId in note (for tracking)
-        const upiUrl = `upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&am=${totalAmount}&cu=INR&tn=Order:${data.paymentId}`;
+        // const upiUrl = `upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&am=${totalAmount}&cu=INR&tn=Order:${data.paymentId}`;
+        const upiUrl = `upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&am=${totalAmount}&cu=INR&tr=${paymentId}&tn=Order:${paymentId}&mc=0000`;
 
         // Open UPI app
         window.location.href = upiUrl;
