@@ -132,7 +132,21 @@ const PaymentButton = () => {
       </button>
 
       {showQR && <UPIQRCode upiUrl={`upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&mc=0000&tr=${paymentId}&am=${totalAmount}&cu=INR&tn=Order:${paymentId}`} />}
-          <a href={`upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&mc=0000&tr=${paymentId}&am=${totalAmount}&cu=INR&tn=Order:${paymentId}`} > Proceed to pay with link UPI</a>
+
+      <a
+        href={`upi://pay?pa=${encodeURIComponent(RECEIVER_UPI)}&pn=${encodeURIComponent(RECEIVER_NAME)}&mc=0000&tr=${paymentId}&am=${totalAmount}&cu=INR&tn=Order:${paymentId}`}
+        style={{
+          display: 'block',
+          marginTop: '1rem',
+          fontSize: '1rem',
+          color: '#007bff',
+          textDecoration: 'underline',
+        }}
+      >
+        Proceed to pay with UPI link
+      </a>
+
+
       {paymentStatus && (
         <div
           style={{
